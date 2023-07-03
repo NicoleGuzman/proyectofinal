@@ -13,7 +13,6 @@
 
 <h:body>
 	<ui:include src="Common/Navbar.xhtml"></ui:include>
-	
 	<b:jumbotron>
 		<h1>Petshop!</h1>
 		<p>This is a simple hero unit, a simple jumbotron-style component
@@ -22,24 +21,31 @@
 			<a class="btn btn-primary btn-lg">Learn more</a>
 		</p>
 	</b:jumbotron>
-	<h:form>
-		<h:panelGrid>
-			<h:commandLink action="pages/reserva">
-				<h:outputText value="Pagina reserva"></h:outputText>
-			</h:commandLink>
-			<h:commandButton
-				action="#{beanClienteNuevo.irBusquedaCuentaBootsfaces}"
-				value="Busqueda de cuentas con Bootsfaces"></h:commandButton>
-			<h:commandLink action="gestionarejemplo/clientenuevo">
-				<h:outputText value="Cliente nuevo"></h:outputText>
-			</h:commandLink>
-			<h:commandButton action="gestionarejemplo/clientenuevo"
-				value="Nuevo Cliente"></h:commandButton>
-			<h:commandButton action="#{beanClienteNuevo.irClienteNuevo}"
-				value="Nuevo Cliente desde Bean"></h:commandButton>
-			<h:commandButton action="#{beanReserva.irBusquedaCuenta}"
-				value="Abrir reservas"></h:commandButton>
-		</h:panelGrid>
-	</h:form>
+	<b:row styleClass="show-grid">
+		<b:column span="6" offset="3">
+			<b:carousel id="tiovivo" style="width:1000px" interval="2500">
+				<b:carouselItem>
+					<h:graphicImage url="images/petshop-portada.jpg" alt="Valladolid" />
+					<b:carouselCaption>
+						<h2>You'll love Valladolid!</h2>
+						<p>
+							The band reads <a style="color: #fff" href="">"Non plus
+								ultra"</a>, being Spains' motto in 1492, when Columbus made his
+							discoveries.
+						</p>
+					</b:carouselCaption>
+				</b:carouselItem>
+
+				<b:carouselItem caption="Ain't he a beauty?">
+					<h:graphicImage url="images/petshop-portada2.jpg" alt="Valladolid" />
+				</b:carouselItem>
+
+				<b:carouselItem caption="Valladolid - a city with a lot of history">
+					<h:graphicImage url="images/petshop-portada3.jpg" alt="Valladolid" />
+				</b:carouselItem>
+			</b:carousel>
+		</b:column>
+	</b:row>
+
 </h:body>
 </html>

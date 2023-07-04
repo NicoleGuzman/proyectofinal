@@ -11,7 +11,7 @@ public class Conexion {
 		Connection cnx = null;
 		try {
 			InitialContext context = new InitialContext();
-			DataSource ds = (DataSource) context.lookup("java:/jdbc/hotelutp");
+			DataSource ds = (DataSource) context.lookup("java:/jdbc/dbpetshop");
 			cnx = ds.getConnection();
 		} catch (Exception ex) {
 			throw new RuntimeException(ex);

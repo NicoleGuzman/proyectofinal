@@ -3,6 +3,7 @@
 	<name>Petshop_gradle-lib</name>
 	<comment>Project Petshop_gradle-lib created by Buildship.</comment>
 	<projects>
+		<project>petshop_jpa</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

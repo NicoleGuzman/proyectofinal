@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<title><h:outputText value="#{msg.index_titulo}"></h:outputText></title>
+</h:head>
+
+<h:body>
+	<div class="container">
+		<ui:include src="Common/Navbar.xhtml"></ui:include>
+		<div class="container">
+
+			<h:form>
+				<h2 class="form-signin-heading">Ingrese sus datos</h2>
+				<label for="inputEmail" class="sr-only">Email address</label>
+				<b:inputText  span="3" type="email" id="inputEmail" class="form-control"
+					placeholder="Email address"
+					value="#{beanReserva.reservaDTO.numeroNinos}" />
+				<label for="inputPassword" class="sr-only">Password</label>
+				<b:inputText  span="3" type="password" id="inputPassword" class="form-control"
+					placeholder="Password"
+					value="#{beanReserva.reservaDTO.numeroNinos}" />
+
+				<b:commandButton value="Guardar cambios" class=""
+					actionListener="#{beanReserva.guardarReserva}" />
+			</h:form>
+
+		</div>
+		<!-- /container -->
+	</div>
+</h:body>
+</html>

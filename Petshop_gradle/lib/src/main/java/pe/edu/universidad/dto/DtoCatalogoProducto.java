@@ -1,47 +1,39 @@
 package pe.edu.universidad.dto;
 
+import java.util.Date;
+
+import pe.edu.universidad.entidades.Producto;
+
 public class DtoCatalogoProducto {
-	private int id_producto;
-	private String nombre;
-	private String descripcion;
-	private double precio;
-	private int stock;
-	private String imagen;
-	public int getId_producto() {
-		return id_producto;
+	
+	private int idInventario;
+	private int cantidadDisponible;
+	private Date fechaIngreso;
+	private Producto producto;
+	
+	public int getIdInventario() {
+		return idInventario;
 	}
-	public void setId_producto(int id_producto) {
-		this.id_producto = id_producto;
+	public void setIdInventario(int idInventario) {
+		this.idInventario = idInventario;
 	}
-	public String getNombre() {
-		return nombre;
+	public int getCantidadDisponible() {
+		return cantidadDisponible;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setCantidadDisponible(int cantidadDisponible) {
+		this.cantidadDisponible = cantidadDisponible;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public Date getFechaIngreso() {
+		return fechaIngreso;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setFechaIngreso(Date fechaIngreso) {
+		this.fechaIngreso = fechaIngreso;
 	}
-	public double getPrecio() {
-		return precio;
+	public Producto getProducto() {
+		return producto;
 	}
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
-	public int getStock() {
-		return stock;
-	}
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 	
 }

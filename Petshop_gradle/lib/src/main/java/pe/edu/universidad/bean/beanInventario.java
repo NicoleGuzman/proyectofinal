@@ -9,20 +9,20 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.universidad.dto.DtoCatalogoProducto;
-import pe.edu.universidad.gestorproductos.ServicioGestorCatalogo;
+import pe.edu.universidad.service.InventarioService;
 
 @Named
 @SessionScoped
-public class beanCatalogoProducto implements Serializable{
+public class beanInventario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private ServicioGestorCatalogo servicioGestorCatalogo;
+	private InventarioService servicioGestorCatalogo;
 	
 	private List<DtoCatalogoProducto> listaCatalogo;
 	
 	@PostConstruct
 	public void getcatalogo() {
-		setListaCatalogo(servicioGestorCatalogo.ConsultarCatalogo());
+		setListaCatalogo(servicioGestorCatalogo.consultarCatalogo());
 	}
 
 	public List<DtoCatalogoProducto> getListaCatalogo() {

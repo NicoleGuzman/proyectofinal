@@ -12,6 +12,7 @@
 </h:head>
 
 <h:body>
+ <div class="container">
 	<ui:include src="Common/Navbar.xhtml"></ui:include>
 
 
@@ -19,48 +20,60 @@
 
 		<b:column span="10" offset="1">
 			<h1>Catalogo</h1>
-			<ui:repeat value="#{beanCatalogoProducto.listaCatalogo}"
-				var="producto">
-				<div class="col-sm-3 mb-3 border">
-					<div class="card h-100">
-						<h:form>							
-							<h:graphicImage value="#{producto.imagen}" class="card-img-top img-fluid" alt="..." width="300" height="500" style="object-fit: cover;" />							 						 
-							<div class="card-body d-flex flex-column justify-content-between">							
-								<h5 class="card-title text-center mb-3">#{producto.nombre}</h5>
-								<p class="card-text">#{producto.descripcion}</p>
-								<div class="d-flex justify-content-between align-items-end">
-									<p class="card-text mb-0">Precio: #{producto.precio}</p>
-									<p class="card-text mb-0">Stock: #{producto.stock} unidades</p>
-								</div>
-								<div class="d-flex justify-content-between align-items-center">
-									<!--NO ESTA LOGEADO  -->
-									<h:panelGroup rendered="#{empty sessionScope.id_usuario}">
-										<!-- Mostrar el formulario aquí -->
-										<button type="button" class="btn btn-primary"
-											data-bs-toggle="modal" data-bs-target="#login">Comprar
-										</button>
-									</h:panelGroup>
-									<!-- ESTA LOGEADO -->
-									<h:panelGroup rendered="#{not empty sessionScope.id_usuario}">
-										<!-- Mostrar algo diferente aquí -->
-										<h:inputHidden id="id-producto"
-											value="#{producto.id_producto}" />
-										<b:inputText value="#{inputTextBean.text}" mask="integer"
-											label="integer" render-label="true" />
+			<b:row>
+				<ui:repeat value="#{beanInventario.listaCatalogo}" var="inventario">
 
-										<h:commandButton value="Comprar"
-											action="#{carritoBean.agregarProducto(producto)}"
-											class="btn btn-primary" />
-									</h:panelGroup>
-								</div>
-							</div>
-						</h:form>
-					</div>
-				</div>
-			</ui:repeat>
+					<b:column span="4">
+						
+							<div class="card h-100">
+								<h:form>
+									<h:graphicImage
+										value="images/catalogo/#{inventario.producto.imagen}"
+										class="card-img-top img-fluid" alt="..." width="" height="230"
+										style="object-fit: cover;" />
+									<div
+										class="card-body d-flex flex-column justify-content-between">
+										<h4 class="card-title">#{inventario.producto.nombre}</h4>
+										<p class="card-text">#{inventario.producto.descripcion}</p>
+										<div class="d-flex justify-content-between align-items-end">
+											<p class="card-text mb-0">Precio:
+												#{inventario.producto.precio}</p>
+											<p class="card-text mb-0">Stock:
+												#{inventario.cantidadDisponible} unidades</p>
+										</div>
+										<div class="d-flex justify-content-between align-items-center">
+											<!--NO ESTA LOGEADO  -->
+											<h:panelGroup rendered="#{empty sessionScope.id_usuario}">
+												<!-- Mostrar el formulario aquí -->
+												<button type="button" class="btn btn-primary"
+													data-bs-toggle="modal" data-bs-target="#login">Comprar
+												</button>
+											</h:panelGroup>
+											<!-- ESTA LOGEADO -->
+											<h:panelGroup rendered="#{not empty sessionScope.id_usuario}">
+												<!-- Mostrar algo diferente aquí -->
+												<h:inputHidden id="id-producto"
+													value="#{producto.id_producto}" />
+												<b:inputText value="#{inputTextBean.text}" mask="integer"
+													label="integer" render-label="true" />
+
+												<h:commandButton value="Comprar"
+													action="#{carritoBean.agregarProducto(producto)}"
+													class="btn btn-primary" />
+											</h:panelGroup>
+										</div>
+									</div>
+								</h:form>
+								
+							
+						</div>
+					</b:column>
+
+				</ui:repeat>
+			</b:row>
 		</b:column>
 	</b:row>
 
-
+</div>
 </h:body>
 </html>

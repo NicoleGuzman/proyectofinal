@@ -9,8 +9,10 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import pe.edu.universidad.dto.DtoLoginIdUsuario;
 import pe.edu.universidad.dto.DtoUsuarioLogin;
 import pe.edu.universidad.entidades.Usuario;
 import pe.edu.universidad.service.AutentificationService;
@@ -24,16 +26,26 @@ public class beanAutentification implements Serializable {
 	
 	private Usuario usuarioform;
 	private DtoUsuarioLogin login = new DtoUsuarioLogin();
+	
 	private Usuario logeado;
+	
 	private int idCliente;
 	
 	public void iniciarSesion() throws IOException {
 		setLogeado(autentificationService.buscarUsuario(login.getNombre_usuario(), login.getContrasena()));	
+		// Obtener la sesión actual
+	    HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+	    HttpSession session = request.getSession();
+	    session.setAttribute("usuario", logeado);
+	    DtoLoginIdUsuario cliente = new DtoLoginIdUsuario();
+	    cliente.setIdCliente(logeado.getCliente().getIdCliente());
+	    
+	    beanDetalleCarrito  carrito = new beanDetalleCarrito();
+	    
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		String url = externalContext.getRequestContextPath() + "/index.xhtml";
-		externalContext.redirect(url);
+		externalContext.redirect(url);	
 	}
-	
 
 	public Usuario getUsuarioform() {
 		return usuarioform;

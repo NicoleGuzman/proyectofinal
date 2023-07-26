@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.universidad.dto.DtoCatalogoInventario;
-import pe.edu.universidad.dto.DtoCatalogoProducto;
 import pe.edu.universidad.service.InventarioService;
 
 @Named
@@ -33,4 +32,6 @@ public class beanInventario implements Serializable{
 	public void setListaCatalogo(List<DtoCatalogoInventario> listaCatalogo) {
 		this.listaCatalogo = listaCatalogo;
 	}
+
+	
 }

@@ -3,18 +3,14 @@ package pe.edu.universidad.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
-
-
-import pe.edu.universidad.dto.DtoCatalogoProducto;
-import pe.edu.universidad.entidades.DetallesCarrito;
-import pe.edu.universidad.entidades.Usuario;
+import pe.edu.universidad.dto.DtoDetalleCarrito;
 import pe.edu.universidad.service.DetalleCarritoService;
-import pe.edu.universidad.service.InventarioService;
 
 @Named
 @SessionScoped
@@ -24,21 +20,25 @@ public class beanDetalleCarrito implements Serializable{
 	@Inject
 	private DetalleCarritoService detalleCarritoService;
 	
-	private List<DetallesCarrito> listaCarrito; 
+	private List<DtoDetalleCarrito> listaCarrito; 
 	
-	@PostConstruct
-	public void obtenerDetallesCarritoPorCliente(Integer idUsuario) {
-		
-		Usuario IdUsuario = new Usuario();			
+	
+	public String obtenerDetallesCarritoPorCliente() {
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+		setListaCarrito(detalleCarritoService.obtenerDetallesCarritoPorCliente(idCliente));
+		return "detalleCarrito.xhtml";
 	}
 
-	public List<DetallesCarrito> getListaCarrito() {
+	public List<DtoDetalleCarrito> getListaCarrito() {
 		return listaCarrito;
 	}
 
-	public void setListaCarrito(List<DetallesCarrito> listaCarrito) {
+	public void setListaCarrito(List<DtoDetalleCarrito> listaCarrito) {
 		this.listaCarrito = listaCarrito;
 	}
+	
+
 	
 	
 }

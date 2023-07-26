@@ -1,5 +1,6 @@
 package pe.edu.universidad.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -14,6 +15,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import pe.edu.universidad.dto.DtoDetalleCarrito;
+import pe.edu.universidad.dto.DtoDetalleProducto;
+import pe.edu.universidad.dto.DtoIdUsuario;
 import pe.edu.universidad.entidades.DetallesCarrito;
 import pe.edu.universidad.entidades.Usuario;
 
@@ -28,23 +32,44 @@ public class DetalleCarritoService {
 	@Path("buscarPorIdUsuario/{idUsuario}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Usuario buscarPorIdUsuario(@PathParam("idUsuario") int idUsuario) {
-       return em.find(Usuario.class, idUsuario);
+	public DtoIdUsuario buscarPorIdUsuario(@PathParam("idUsuario") int idUsuario) {
+		
+		Usuario usuario= em.find(Usuario.class, idUsuario);
+		
+		DtoIdUsuario dtoIdUsuario = new DtoIdUsuario();
+		dtoIdUsuario.setIdUsuario(usuario.getIdUsuario());
+		dtoIdUsuario.setNombreUsuario(usuario.getNombreUsuario());
+		
+       return dtoIdUsuario;
     }
 	
 	@GET
 	@Path("obtenerDetallesCarritoPorCliente/{idUsuario}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<DetallesCarrito> obtenerDetallesCarritoPorCliente(Integer idUsuario) {
+	public List<DtoDetalleCarrito> obtenerDetallesCarritoPorCliente(@PathParam("idUsuario")int idUsuario) {
+		List<DtoDetalleCarrito> dtolistacarrito = new ArrayList<DtoDetalleCarrito>();
 		TypedQuery<DetallesCarrito> query = em.createQuery(
 				"SELECT dc FROM DetallesCarrito dc JOIN dc.carrito c WHERE c.cliente.idCliente = :idCliente",
 				DetallesCarrito.class);
 		query.setParameter("idCliente", idUsuario);
-		List<DetallesCarrito> detallesCarrito = query.getResultList();
 		
-		return detallesCarrito;
+		for (DetallesCarrito detallesCarrito : query.getResultList()) {
+			DtoDetalleCarrito dtoDetalleCarrito = new DtoDetalleCarrito();
+			dtoDetalleCarrito.setIdDettalle(detallesCarrito.getIdDetalle());
+			dtoDetalleCarrito.setCantidad(detallesCarrito.getCantidad());
+			DtoDetalleProducto dtoDetalleProducto = new DtoDetalleProducto();
+			dtoDetalleProducto.setIdProducto(detallesCarrito.getProducto().getIdProducto());
+			dtoDetalleProducto.setNombre(detallesCarrito.getProducto().getNombre());
+			dtoDetalleProducto.setDescripcion(detallesCarrito.getProducto().getDescripcion());
+			dtoDetalleProducto.setPrecio(detallesCarrito.getProducto().getPrecio());
+			dtoDetalleCarrito.setDtoDetalleProducto(dtoDetalleProducto);
+			dtolistacarrito.add(dtoDetalleCarrito);		
+		}
+		
+		return dtolistacarrito;
 	}
+	
 	
 	
 

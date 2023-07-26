@@ -1,39 +1,44 @@
 package pe.edu.universidad.dto;
 
-import java.util.Date;
-
-import pe.edu.universidad.entidades.Producto;
+import java.math.BigDecimal;
 
 public class DtoCatalogoProducto {
+	private int idProducto;
+	private String descripcion;
+	private String nombre;
+	private BigDecimal precio;
+	private String imagen;
+	public int getIdProducto() {
+		return idProducto;
+	}
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
 	
-	private int idInventario;
-	private int cantidadDisponible;
-	private Date fechaIngreso;
-	private Producto producto;
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public BigDecimal getPrecio() {
+		return precio;
+	}
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
 	
-	public int getIdInventario() {
-		return idInventario;
-	}
-	public void setIdInventario(int idInventario) {
-		this.idInventario = idInventario;
-	}
-	public int getCantidadDisponible() {
-		return cantidadDisponible;
-	}
-	public void setCantidadDisponible(int cantidadDisponible) {
-		this.cantidadDisponible = cantidadDisponible;
-	}
-	public Date getFechaIngreso() {
-		return fechaIngreso;
-	}
-	public void setFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
-	public Producto getProducto() {
-		return producto;
-	}
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
 	
 }

@@ -12,6 +12,7 @@
 </h:head>
 
 <h:body>
+ <div class="container">
 	<ui:include src="Common/Navbar.xhtml"></ui:include>
 	<b:jumbotron>
 		<h1>Petshop!</h1>
@@ -22,7 +23,7 @@
 		</p>
 	</b:jumbotron>
 	<b:row styleClass="show-grid">
-		<b:column span="6" offset="3">
+		<b:column span="10" offset="1">
 			<b:carousel id="tiovivo" style="width:1000px" interval="2500">
 				<b:carouselItem>
 					<h:graphicImage url="images/petshop-portada.jpg" alt="Valladolid" />
@@ -46,6 +47,6 @@
 			</b:carousel>
 		</b:column>
 	</b:row>
-
+</div>
 </h:body>
 </html>

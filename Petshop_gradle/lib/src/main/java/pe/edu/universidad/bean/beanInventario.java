@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.edu.universidad.dto.DtoCatalogoInventario;
 import pe.edu.universidad.dto.DtoCatalogoProducto;
 import pe.edu.universidad.service.InventarioService;
 
@@ -16,20 +17,20 @@ import pe.edu.universidad.service.InventarioService;
 public class beanInventario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Inject
-	private InventarioService servicioGestorCatalogo;
+	private InventarioService inventarioService;
 	
-	private List<DtoCatalogoProducto> listaCatalogo;
+	private List<DtoCatalogoInventario> listaCatalogo;
 	
 	@PostConstruct
 	public void getcatalogo() {
-		setListaCatalogo(servicioGestorCatalogo.consultarCatalogo());
+		setListaCatalogo(inventarioService.consultarCatalogo());
 	}
 
-	public List<DtoCatalogoProducto> getListaCatalogo() {
+	public List<DtoCatalogoInventario> getListaCatalogo() {
 		return listaCatalogo;
 	}
 
-	public void setListaCatalogo(List<DtoCatalogoProducto> listaCatalogo) {
+	public void setListaCatalogo(List<DtoCatalogoInventario> listaCatalogo) {
 		this.listaCatalogo = listaCatalogo;
 	}
 }

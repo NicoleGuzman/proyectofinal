@@ -14,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import pe.edu.universidad.dto.DtoCatalogoInventario;
 import pe.edu.universidad.dto.DtoCatalogoProducto;
 import pe.edu.universidad.entidades.Inventario;
 
@@ -28,19 +29,30 @@ public class InventarioService {
 	@Path("consultarCatalogo")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public List<DtoCatalogoProducto> consultarCatalogo() {
-		List<DtoCatalogoProducto> dtolistacatalogo = new ArrayList<DtoCatalogoProducto>();
+	public List<DtoCatalogoInventario> consultarCatalogo() {
+		List<DtoCatalogoInventario> dtolistacatalogo = new ArrayList<DtoCatalogoInventario>();
 		TypedQuery<Inventario> query = em.createQuery("SELECT i FROM Inventario i", Inventario.class);
 		
 		for (Inventario inventario : query.getResultList()) {
-			DtoCatalogoProducto dtoCatalogoProducto = new DtoCatalogoProducto();
+			//INGRESO DE INFORMACION AL DTOCATALOGOINVENTARIO DE INVENTARIO
+			DtoCatalogoInventario dtoCatalogoProducto = new DtoCatalogoInventario();
 			dtoCatalogoProducto.setIdInventario(inventario.getIdInventario());
 			dtoCatalogoProducto.setCantidadDisponible(inventario.getCantidadDisponible());
 			dtoCatalogoProducto.setFechaIngreso(inventario.getFechaIngreso());
-			dtoCatalogoProducto.setProducto(inventario.getProducto());
+			//INGRESO DE INFORMACION AL DTOCATALOGOPRODUCTO DE PRODUCTO
+			DtoCatalogoProducto dtoproducto = new DtoCatalogoProducto();
+			dtoproducto.setIdProducto(inventario.getProducto().getIdProducto());
+			dtoproducto.setNombre(inventario.getProducto().getNombre());
+			dtoproducto.setDescripcion(inventario.getProducto().getDescripcion());
+			dtoproducto.setPrecio(inventario.getProducto().getPrecio());
+			dtoproducto.setImagen(inventario.getProducto().getImagen());
+			
+			dtoCatalogoProducto.setDtoCatalogoProducto(dtoproducto);
+			
 			dtolistacatalogo.add(dtoCatalogoProducto);
 		}
 		return dtolistacatalogo;
 	}
+	
 
 }

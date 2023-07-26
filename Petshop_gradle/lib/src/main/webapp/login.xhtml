@@ -18,19 +18,15 @@
 
 			<h:form>
 				<h2 class="form-signin-heading">Ingrese sus datos</h2>
-				<label for="inputEmail" class="sr-only">Email address</label>
-				<b:inputText  span="3" type="email" id="inputEmail" class="form-control"
-					placeholder="Email address"
-					value="#{beanReserva.reservaDTO.numeroNinos}" />
-				<label for="inputPassword" class="sr-only">Password</label>
-				<b:inputText  span="3" type="password" id="inputPassword" class="form-control"
-					placeholder="Password"
-					value="#{beanReserva.reservaDTO.numeroNinos}" />
-
+				
+				<b:inputText label="Nombre de Usuario"
+					value="#{beanAutentification.login.nombre_usuario}" />
+				<b:inputText label="Contraseña"
+					value="#{beanAutentification.login.contrasena}" />
 				<b:commandButton value="Guardar cambios" class=""
-					actionListener="#{beanReserva.guardarReserva}" />
+					actionListener="#{beanAutentification.iniciarSesion}" />
 			</h:form>
-
+			<h1>#{beanAutentification.logeado.cliente.idCliente }</h1>
 		</div>
 		<!-- /container -->
 	</div>

@@ -28,16 +28,16 @@
 							<div class="card h-100">
 								<h:form>
 									<h:graphicImage
-										value="images/catalogo/#{inventario.producto.imagen}"
+										value="images/catalogo/#{inventario.dtoCatalogoProducto.imagen}"
 										class="card-img-top img-fluid" alt="..." width="" height="230"
 										style="object-fit: cover;" />
 									<div
 										class="card-body d-flex flex-column justify-content-between">
-										<h4 class="card-title">#{inventario.producto.nombre}</h4>
-										<p class="card-text">#{inventario.producto.descripcion}</p>
+										<h4 class="card-title">#{inventario.dtoCatalogoProducto.nombre}</h4>
+										<p class="card-text">#{inventario.dtoCatalogoProducto.descripcion}</p>
 										<div class="d-flex justify-content-between align-items-end">
 											<p class="card-text mb-0">Precio:
-												#{inventario.producto.precio}</p>
+												#{inventario.dtoCatalogoProducto.precio}</p>
 											<p class="card-text mb-0">Stock:
 												#{inventario.cantidadDisponible} unidades</p>
 										</div>

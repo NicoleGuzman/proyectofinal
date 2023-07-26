@@ -23,14 +23,22 @@ public class beanDetalleCarrito implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private DetalleCarritoService detalleCarritoService;
-//********************************//	
-	public List<DetallesCarrito> obtenerDetallesCarritoPorCliente(Integer idUsuario) {
+	
+	private List<DetallesCarrito> listaCarrito; 
+	
+	@PostConstruct
+	public void obtenerDetallesCarritoPorCliente(Integer idUsuario) {
 		
-		Usuario IdUsuario = new Usuario();		
-		
-		List<DetallesCarrito> detallesCarrito = getResultList();
-		
-		return detallesCarrito;
+		Usuario IdUsuario = new Usuario();			
 	}
+
+	public List<DetallesCarrito> getListaCarrito() {
+		return listaCarrito;
+	}
+
+	public void setListaCarrito(List<DetallesCarrito> listaCarrito) {
+		this.listaCarrito = listaCarrito;
+	}
+	
 	
 }
